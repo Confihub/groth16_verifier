@@ -1,0 +1,39 @@
+[package]
+name = "groth16_verifier"
+version = "0.1.0"
+edition = "2021"
+description = "On-chain Groth16 BLS12-381 verifier for Soroban"
+license = "Apache-2.0"
+repository = "https://github.com/Confihub/groth16_verifier"
+readme = "README.md"
+keywords = ["stellar", "soroban", "groth16", "zkp", "cryptography"]
+rust-version = "1.91"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = "25.3.2"
+
+[features]
+default = ["export-contract"]
+# Emits the contract's wasm export functions (the deployable). Sibling crates
+# depend with default-features = false to get only the shared types + client.
+export-contract = []
+
+# Soroban contracts build as small, LTO'd cdylibs for wasm.
+[profile.release]
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
+
+[profile.release-with-logs]
+inherits = "release"
+debug-assertions = true
