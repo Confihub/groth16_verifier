@@ -180,6 +180,16 @@ The optimized Wasm is produced under:
 target/wasm32v1-none/release/groth16_verifier.wasm
 ```
 
+## Tests
+
+The published suite covers initialization and key readback, canonical public
+inputs, verifying-key length guards, proof decoding, public-input ordering, and
+comparative BLS12-381 host-operation costs.
+
+```bash
+cargo +1.91.0 test --locked
+```
+
 ## Deployment outline
 
 ```bash

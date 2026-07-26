@@ -254,3 +254,6 @@ fn slice_192(raw: &Bytes, off: u32) -> [u8; 192] {
     }
     out
 }
+
+#[cfg(test)]
+mod test;
